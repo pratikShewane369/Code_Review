@@ -9,9 +9,8 @@ import axios from "axios";
 import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0);
-  const [code, setCode] = useState(` function sum() {
-  return 1 + 1
+  const [code, setCode] = useState(` function sum(const a, const b) {
+  return a+b;
 }`);
 
   const [review, setReview] = useState(``);
@@ -21,7 +20,7 @@ function App() {
   }, []);
 
   async function reviewCode() {
-    const response = await axios.post("http://localhost:3000/ai/get-review", {
+    const response = await axios.post(`https://code-review-awov.onrender.com/ai/get-review`, {
       code,
     });
     setReview(response.data);
