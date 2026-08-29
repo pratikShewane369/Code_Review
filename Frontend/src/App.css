@@ -1,0 +1,412 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  background: #0f1117;
+  color: #e6edf3;
+}
+
+main {
+  height: 100vh;
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  gap: 1rem;
+  background: #0f1117;
+}
+
+/* =========================
+   LEFT SIDE - CODE EDITOR
+   ========================= */
+
+main .left {
+  height: 100%;
+  flex-basis: 50%;
+  border-radius: 12px;
+  background: #0d1117;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #30363d;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.left .code {
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  padding-bottom: 70px;
+}
+
+/* Code editor scrollbar */
+.left .code::-webkit-scrollbar,
+.right::-webkit-scrollbar {
+  width: 8px;
+}
+
+.left .code::-webkit-scrollbar-track,
+.right::-webkit-scrollbar-track {
+  background: #0d1117;
+}
+
+.left .code::-webkit-scrollbar-thumb,
+.right::-webkit-scrollbar-thumb {
+  background: #30363d;
+  border-radius: 10px;
+}
+
+.left .code::-webkit-scrollbar-thumb:hover,
+.right::-webkit-scrollbar-thumb:hover {
+  background: #484f58;
+}
+
+/* Editor */
+
+.left textarea {
+  outline: none !important;
+  color: #e6edf3 !important;
+  caret-color: #58a6ff;
+}
+
+.left pre {
+  background: transparent !important;
+}
+
+/* =========================
+   REVIEW BUTTON
+   ========================= */
+
+main .left .review {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+
+  background: #238636;
+  color: white;
+
+  padding: 0.65rem 1.5rem;
+
+  border: none;
+  border-radius: 8px;
+
+  font-size: 0.95rem;
+  font-weight: 600;
+
+  cursor: pointer;
+  user-select: none;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+
+  transition: all 0.2s ease;
+}
+
+main .left .review:hover {
+  background: #2ea043;
+  transform: translateY(-1px);
+}
+
+main .left .review:active {
+  transform: translateY(0);
+}
+
+/* =========================
+   RIGHT SIDE - AI REVIEW
+   ========================= */
+
+main .right {
+  height: 100%;
+  flex-basis: 50%;
+
+  background: #161b22;
+
+  border: 1px solid #30363d;
+  border-radius: 12px;
+
+  padding: 1.5rem 2rem;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  color: #e6edf3;
+
+  font-size: 1rem;
+  line-height: 1.7;
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* =========================
+   MARKDOWN
+   ========================= */
+
+.right h1,
+.right h2,
+.right h3,
+.right h4 {
+  color: #f0f6fc;
+  line-height: 1.3;
+  margin-top: 1.5rem;
+  margin-bottom: 0.8rem;
+  font-weight: 700;
+}
+
+.right h1 {
+  font-size: 1.8rem;
+  border-bottom: 1px solid #30363d;
+  padding-bottom: 0.6rem;
+}
+
+.right h2 {
+  font-size: 1.45rem;
+  border-bottom: 1px solid #21262d;
+  padding-bottom: 0.4rem;
+}
+
+.right h3 {
+  font-size: 1.2rem;
+}
+
+.right h4 {
+  font-size: 1.05rem;
+}
+
+.right h1:first-child,
+.right h2:first-child,
+.right h3:first-child {
+  margin-top: 0;
+}
+
+/* Paragraph */
+
+.right p {
+  color: #c9d1d9;
+  margin: 0.75rem 0;
+}
+
+/* Bold */
+
+.right strong {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+/* Italic */
+
+.right em {
+  color: #c9d1d9;
+}
+
+/* =========================
+   LISTS
+   ========================= */
+
+.right ul,
+.right ol {
+  margin: 0.8rem 0 1rem 1.5rem;
+  padding-left: 1rem;
+}
+
+.right li {
+  color: #c9d1d9;
+  margin: 0.35rem 0;
+  padding-left: 0.3rem;
+}
+
+.right li::marker {
+  color: #58a6ff;
+}
+
+/* Nested lists */
+
+.right ul ul,
+.right ol ol,
+.right ul ol,
+.right ol ul {
+  margin-top: 0.3rem;
+  margin-bottom: 0.3rem;
+}
+
+/* =========================
+   INLINE CODE
+   ========================= */
+
+.right :not(pre) > code {
+  background: #21262d;
+  color: #79c0ff;
+
+  padding: 0.15rem 0.4rem;
+
+  border-radius: 5px;
+
+  font-family: "Fira Code", "Fira Mono", Consolas, monospace;
+  font-size: 0.9em;
+
+  border: 1px solid #30363d;
+}
+
+/* =========================
+   CODE BLOCKS
+   ========================= */
+
+.right pre {
+  background: #0d1117 !important;
+
+  padding: 1rem 1.2rem;
+
+  margin: 1rem 0;
+
+  border-radius: 8px;
+
+  border: 1px solid #30363d;
+
+  overflow-x: auto;
+
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+}
+
+.right pre code {
+  background: transparent !important;
+
+  color: #e6edf3;
+
+  font-family: "Fira Code", "Fira Mono", Consolas, monospace;
+
+  font-size: 0.9rem;
+
+  line-height: 1.6;
+
+  padding: 0;
+
+  border: none;
+}
+
+/* Code scrollbar */
+
+.right pre::-webkit-scrollbar {
+  height: 7px;
+}
+
+.right pre::-webkit-scrollbar-track {
+  background: #0d1117;
+}
+
+.right pre::-webkit-scrollbar-thumb {
+  background: #30363d;
+  border-radius: 10px;
+}
+
+/* =========================
+   BLOCKQUOTE
+   ========================= */
+
+.right blockquote {
+  margin: 1rem 0;
+  padding: 0.7rem 1rem;
+
+  border-left: 4px solid #58a6ff;
+
+  background: #1c2128;
+
+  color: #8b949e;
+
+  border-radius: 0 6px 6px 0;
+}
+
+.right blockquote p {
+  margin: 0;
+}
+
+/* =========================
+   HORIZONTAL LINE
+   ========================= */
+
+.right hr {
+  border: none;
+  border-top: 1px solid #30363d;
+  margin: 1.5rem 0;
+}
+
+/* =========================
+   LINKS
+   ========================= */
+
+.right a {
+  color: #58a6ff;
+  text-decoration: none;
+}
+
+.right a:hover {
+  text-decoration: underline;
+}
+
+/* =========================
+   TABLES
+   ========================= */
+
+.right table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+
+  font-size: 0.95rem;
+}
+
+.right th,
+.right td {
+  border: 1px solid #30363d;
+  padding: 0.7rem 0.8rem;
+  text-align: left;
+}
+
+.right th {
+  background: #21262d;
+  color: #f0f6fc;
+  font-weight: 600;
+}
+
+.right td {
+  color: #c9d1d9;
+}
+
+.right tr:nth-child(even) {
+  background: #161b22;
+}
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 900px) {
+  main {
+    flex-direction: column;
+    height: auto;
+    min-height: 100vh;
+  }
+
+  main .left,
+  main .right {
+    flex-basis: auto;
+    width: 100%;
+  }
+
+  main .left {
+    height: 55vh;
+  }
+
+  main .right {
+    height: auto;
+    min-height: 45vh;
+    max-height: none;
+  }
+}
